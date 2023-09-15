@@ -16,6 +16,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import Nav from './Nav';
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -51,55 +52,59 @@ const SinglePost = () => {
     }, [])
     console.log(post)
     return (
-        <Card sx={{ maxWidth: 'lg' }}>
-            <CardHeader
-                avatar={
-                    <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                        {post.id}
-                    </Avatar>
-                }
-                action={
-                    <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                    </IconButton>
-                }
-                title={post.title}
-                subheader="September 14, 2016"
-            />
-            <CardMedia
-                component="img"
-                height="194"
-                image="/images/ojt1.jpeg"
-                alt="card image"
-            />
-            <CardContent>
-                <Typography variant="body2" color="text.secondary">
-                    {post.slug}
-                </Typography>
-            </CardContent>
-            <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
-                </IconButton>
-                <IconButton aria-label="share">
-                    <ShareIcon />
-                </IconButton>
-                <ExpandMore
-                    expand={expanded}
-                    onClick={handleExpandClick}
-                    aria-expanded={expanded}
-                    aria-label="show more"
-                >
-                    <ExpandMoreIcon />
-                </ExpandMore>
-            </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <>
+            <Nav />
+            <Card sx={{ maxWidth: 'lg' }}>
+                <CardHeader
+                    avatar={
+                        <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                            {post.id}
+                        </Avatar>
+                    }
+                    action={
+                        <IconButton aria-label="settings">
+                            <MoreVertIcon />
+                        </IconButton>
+                    }
+                    title={post.title}
+                    subheader={new Date(post.created_at).toLocaleString()}
+                />
+                <CardMedia
+                    component="img"
+                    height="194"
+                    image="/images/ojt1.jpeg"
+                    alt="card image"
+                />
                 <CardContent>
-                    <Typography paragraph>{post.content}</Typography>
-
+                    <Typography variant="body2" color="text.secondary">
+                        {post.slug}
+                    </Typography>
                 </CardContent>
-            </Collapse>
-        </Card>
+                <CardActions disableSpacing>
+                    <IconButton aria-label="add to favorites">
+                        <FavoriteIcon />
+                    </IconButton>
+                    <IconButton aria-label="share">
+                        <ShareIcon />
+                    </IconButton>
+                    <ExpandMore
+                        expand={expanded}
+                        onClick={handleExpandClick}
+                        aria-expanded={expanded}
+                        aria-label="show more"
+                    >
+                        <ExpandMoreIcon />
+                    </ExpandMore>
+                </CardActions>
+                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                    <CardContent>
+                        <Typography paragraph>{post.content}</Typography>
+
+                    </CardContent>
+                </Collapse>
+            </Card>
+        </>
+
     )
 }
 
