@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
-
+import { Container, Typography } from '@mui/material'
 import './App.css';
 import Footer from './Footer';
+
 
 import Nav from './Nav';
 import Title from './Title';
 import axios from 'axios'
+import PostList from './PostList';
 function App() {
   const [posts, setPosts] = useState([])
   const fetchPosts = () => {
 
     axios
-      .get(`http://localhost:4000/api/posts`)
+      .get(`${process.env.REACT_APP_API}/posts`)
       .then(response => {
         // console.log(response.data);
         setPosts(response.data);
@@ -33,11 +35,7 @@ function App() {
       <Title title="My Blog Posts" message="welcome" />
       {posts.map(post => {
         return (
-          <div>
-            <h1>{post.title}</h1>
-            <i>{post.slug}</i>
-            <p>{post.content}</p>
-          </div>
+        <PostList post={post}/>
         )
       })}
       <Footer />
