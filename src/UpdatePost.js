@@ -24,7 +24,7 @@ const UpdatePost = () => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        axios.put(`${process.env.REACT_APP_API}/posts/${post.id}`, { title, content, user, userId: post.user_id }).then(response => {
+        axios.put(`${process.env.REACT_APP_API}/posts/${id}`, { title, content, user, userId: user.id }).then(response => {
                 console.log(response);
                 setState({ ...state, title: '', content: '', user: '' });
                 // show sucess alert
@@ -81,7 +81,7 @@ const UpdatePost = () => {
                     type="text" className="form-control" placeholder="Your name"
                     required
                     onChange={handleChange('user')} 
-                    value={user}/>
+                    value={user.name}/>
             </div>
             <div>
                 <button className="btn btn-primary">update</button>
