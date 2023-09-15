@@ -11,7 +11,8 @@ const UpdatePost = () => {
     const [state, setState] = useState({
         title: '',
         content: '',
-        user: ''
+        user: '',
+        userId: '',
     });
 
     const { title, content, user } = state;
@@ -23,7 +24,7 @@ const UpdatePost = () => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        axios.put(`${process.env.REACT_APP_API}/posts/${post.id}`, { title, content, user, }).then(response => {
+        axios.put(`${process.env.REACT_APP_API}/posts/${post.id}`, { title, content, user, userId: post.user_id }).then(response => {
                 console.log(response);
                 setState({ ...state, title: '', content: '', user: '' });
                 // show sucess alert
@@ -40,14 +41,15 @@ const UpdatePost = () => {
         axios.get(`${process.env.REACT_APP_API}/posts/${id}/edit`)
             .then(response => {
                 console.log(response);
-                setPost(response.data);
+                const { title, content, slug, user } = response.data;
+                setState({ ...state, title, content, slug, user, userId: user.id });
             })
             .catch(error => {
                 alert('Error fetching posts')
                 console.log(error)
             });
     }, [])
-    console.log(post)
+    // console.log(post.user.name)
   return (
     <>
     <Nav />
@@ -62,7 +64,7 @@ const UpdatePost = () => {
                     type="text" className="form-control" placeholder="Post title"
                     required
                     onChange={handleChange('title')}
-                    value={post.title}
+                    value={title}
                 />
             </div>
             <div className="form-group">
@@ -70,7 +72,7 @@ const UpdatePost = () => {
                 <textarea
                     type="text" className="form-control" placeholder="Write something.." required
                     onChange={handleChange('content')}
-                    value={post.content}
+                    value={content}
                 />
             </div>
             <div className="form-group">
@@ -79,7 +81,7 @@ const UpdatePost = () => {
                     type="text" className="form-control" placeholder="Your name"
                     required
                     onChange={handleChange('user')} 
-                    value={post.user.name}/>
+                    value={user}/>
             </div>
             <div>
                 <button className="btn btn-primary">update</button>
