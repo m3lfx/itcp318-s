@@ -19,7 +19,7 @@ const Create = () => {
  
     const handleSubmit = event => {
         event.preventDefault();
-        axios.post(`http://localhost:4000/api/posts`, { title, content, user, }).then(response => {
+        axios.post(`${process.env.REACT_APP_API}/posts`, { title, content, user, }).then(response => {
                 console.log(response);
                 setState({ ...state, title: '', content: '', user: '' });
                 // show sucess alert

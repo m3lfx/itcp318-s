@@ -35,7 +35,7 @@ function App() {
       <Title title="My Blog Posts" message="welcome" />
       {posts.map(post => {
         return (
-        <PostList post={post}/>
+        <PostList post={post} key={post.id}/>
         )
       })}
       <Footer />

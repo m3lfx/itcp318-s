@@ -1,15 +1,21 @@
 import React from 'react'
-import { Container, Typography } from '@mui/material'
+import { Container, Typography, Link } from '@mui/material'
 
-const PostList = ({post}) => {
-  return (
-    <Container>
-            <Typography variant="h2" gutterBottom sx={{ color: 'red' }}>
-              {post.title}
-            </Typography>
+const PostList = ({ post }) => {
+    return (
+      
+        <Container>
+            <Link href={`/posts/${post.id}`}  underline="hover">
+                <Typography variant="h2" gutterBottom sx={{ color: 'red' }}>
+                    {post.title}
+                </Typography>
+            </Link>
             <Typography variant="body1">{post.content}</Typography>
-          </Container>
-  )
+            
+        </Container>
+      
+        
+    )
 }
 
 export default PostList
