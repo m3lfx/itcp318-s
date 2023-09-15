@@ -79,10 +79,10 @@ const UpdatePost = () => {
                     type="text" className="form-control" placeholder="Your name"
                     required
                     onChange={handleChange('user')} 
-                    value={post.user_id}/>
+                    value={post.user.name}/>
             </div>
             <div>
-                <button className="btn btn-primary">Create</button>
+                <button className="btn btn-primary">update</button>
             </div>
         </form>
     </div>
