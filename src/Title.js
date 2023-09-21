@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Title = ({title, message}) => {
-    console.log(title)
+    // console.log(title)
   return (
     <>
     <div>{title}</div>
