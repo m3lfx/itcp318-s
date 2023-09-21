@@ -25,12 +25,9 @@ const UpdatePost = () => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        
         axios.put(`${process.env.REACT_APP_API}/posts/${id}`, { title, content, user, userId}).then(response => {
                 console.log(response);
                 setState({ ...state, title: '', content: '', user: '',  userId: 0});
-                // show sucess alert
-                // alert(`Post titled ${response.data.title} is created`);
                 return navigate("/");
             })
             .catch(error => {
