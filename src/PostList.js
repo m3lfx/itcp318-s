@@ -2,8 +2,13 @@ import React from 'react'
 
 import { Container, Typography, Link, Button } from '@mui/material'
 import axios from 'axios';
-
+import { getToken } from './helpers';
 const PostList = ({ post, fetchPosts }) => {
+    const config = {
+        headers: {
+            authorization: `Bearer ${getToken()}`
+        }
+    }
     const deleteConfirm = id => {
         let answer = window.confirm('Are you sure you want to delete this post?');
         if (answer) {
@@ -12,7 +17,7 @@ const PostList = ({ post, fetchPosts }) => {
     };
     const deletePost = id => {
         axios
-            .delete(`${process.env.REACT_APP_API}/posts/${id}`)
+            .delete(`${process.env.REACT_APP_API}/posts/${id}`, config)
             .then(response => {
                 console.log(response)
                 fetchPosts();
