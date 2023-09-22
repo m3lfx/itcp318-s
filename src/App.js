@@ -33,11 +33,11 @@ function App() {
     <>
       <Nav />
       <Title title="My Blog Posts" message="welcome" />
-      {posts.map(post => {
+      {posts.length > 0 ? posts.map(post => {
         return (
         <PostList post={post} key={post.id} fetchPosts={fetchPosts}/>
         )
-      })}
+      }) : <Container><Typography>No Posts Yet</Typography></Container>}
       <Footer />
 
     </>
