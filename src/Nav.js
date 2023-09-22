@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Button from '@mui/material/Button';
 import AppBar from '@mui/material/AppBar';
@@ -16,11 +16,15 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Login from './Login';
+import { getUser, logout } from './helpers';
+
+
 const pages = ['Home', 'Create', 'Login'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const Nav = () => {
     const [open, setOpen] = useState(false);
+    const navigate = useNavigate()
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -142,17 +146,21 @@ const Nav = () => {
                                 component={Link} to="/"
                             >Home
                             </Button>
-                            <Button
+                            { getUser() && <Button
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                                 component={Link} to="/create"
                             >Create
-                            </Button>
-                            <Button
+                            </Button>}
+                            { getUser() ? <Button
+                                sx={{ my: 2, color: 'white', display: 'block' }}
+                                onClick={() => logout(() => navigate('/'))}
+                            >Logout
+                            </Button> : <Button
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                                 onClick={handleClickOpen}
                             >Login
-                            </Button>
+                            </Button>}
 
                         </Box>
 
