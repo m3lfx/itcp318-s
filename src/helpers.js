@@ -7,3 +7,14 @@ export const authenticate = (response, next) => {
     }
     next();
 };
+
+// access token name from session storage
+export const getToken = () => {
+    if (window !== 'undefined') {
+        if (sessionStorage.getItem('token')) {
+            return JSON.parse(sessionStorage.getItem('token'));
+        } else {
+            return false;
+        }
+    }
+};

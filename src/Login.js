@@ -41,30 +41,30 @@ const Login = ({ open, handleClose }) => {
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle>Login</DialogTitle>
             <DialogContent>
-              
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="name"
-                        label="Email Address"
-                        type="email"
-                        fullWidth
-                        variant="standard"
-                        onChange={handleChange('email')}
-                        value={email}
-                    />
-                    <TextField
 
-                        margin="dense"
-                        id="pass"
-                        label="password"
-                        type="password"
-                        fullWidth
-                        variant="standard"
-                        onChange={handleChange('password')}
-                        value={password}
-                    />
-               
+                <TextField
+                    autoFocus
+                    margin="dense"
+                    id="name"
+                    label="Email Address"
+                    type="email"
+                    fullWidth
+                    variant="standard"
+                    onChange={handleChange('email')}
+                    value={email}
+                />
+                <TextField
+
+                    margin="dense"
+                    id="pass"
+                    label="password"
+                    type="password"
+                    fullWidth
+                    variant="standard"
+                    onChange={handleChange('password')}
+                    value={password}
+                />
+
             </DialogContent>
             <DialogActions>
                 <Button
