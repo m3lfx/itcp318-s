@@ -18,3 +18,12 @@ export const getToken = () => {
         }
     }
 };
+export const getUser = () => {
+    if (window !== 'undefined') {
+        if (sessionStorage.getItem('user')) {
+            return JSON.parse(sessionStorage.getItem('user'));
+        } else {
+            return false;
+        }
+    }
+};
